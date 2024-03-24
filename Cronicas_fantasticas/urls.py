@@ -20,5 +20,12 @@ from Cronicas_fantasticas.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('prueba/', prueba)
+    path('prueba/', prueba),
+    #Páginas principales.
+    path('inicio/', home),
+    path('acerca_de_mi/', about),
+    #Páginas correspondientes al registro e inicio de sesión del usuario.
+    path('registro/', signup),  
+    path('registro_finalizado/', signup_done),
+    path('iniciar_sesion/', login),
 ]
