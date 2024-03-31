@@ -170,7 +170,7 @@ def delete_avatar(request):
 #######################################
 
 def players_list(request):
-        context = {'bottom':True}
+        context = {}
         players = Player.objects.all()
         busqueda = request.GET.get('search', '')
         if busqueda:
@@ -186,6 +186,7 @@ def players_list(request):
         return render(request, 'cronicas/players.html', context)
 
 def characters_list(request):
+        context = {'bottom':True}
         busqueda = request.GET.get('search', '')
         if busqueda:
                 characters = Character.objects.filter(player__user__username__icontains=busqueda) | Character.objects.filter(name__icontains=busqueda) | Character.objects.filter(race__icontains=busqueda) | Character.objects.filter(level__icontains=busqueda) | Character.objects.filter(strength__icontains=busqueda) | Character.objects.filter(dexterity__icontains=busqueda) | Character.objects.filter(constitution__icontains=busqueda) | Character.objects.filter(intelligence__icontains=busqueda) | Character.objects.filter(attack__icontains=busqueda) | Character.objects.filter(initiative__icontains=busqueda) | Character.objects.filter(hit_points__icontains=busqueda)
