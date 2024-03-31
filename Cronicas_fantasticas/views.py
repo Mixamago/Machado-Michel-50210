@@ -174,12 +174,16 @@ def players_list(request):
         players = Player.objects.all()
         busqueda = request.GET.get('search', '')
         if busqueda:
-                players = Player.objects.filter(country=busqueda)
+                players = Player.objects.filter(country__icontains=busqueda)
+                players = [player.user for player in players]
+                characters = Character.objects.filter(name__icontains=busqueda)
+                characters = [character.player.user for character in characters]
                 users = User.objects.filter(username__icontains=busqueda)
+                users = players + characters + list(users)
                 context['msg'] = 'Los jugadores que usted busca son estos.'
         else:
                 players = Player.objects.all()
-                users = User.objects.all()                
+                users = User.objects.all()
                 context['msg'] = 'Los jugadores que participan en esta campaña son estos.'
         context['players'] = players        
         context['users'] = users
