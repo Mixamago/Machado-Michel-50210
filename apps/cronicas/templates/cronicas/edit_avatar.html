@@ -1,0 +1,69 @@
+<!-- Herencia de plantilla padre -->
+
+{% extends 'base/base.html' %}
+{% load static %}
+
+<!-- Título de la página -->
+
+{% block page_title %}
+
+CF — Cambiar avatar
+
+{% endblock %}
+
+<!-- Mensaje del sistema -->
+
+{% block system_msg %}
+
+{{msg|safe}}
+
+{% endblock system_msg %}
+
+<!-- Título de la sección -->
+
+{% block title %}
+Cambiar avatar
+{% endblock %}
+
+<!-- Contenido principal de la página -->
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+    {% if check %}
+    <div class="container d-flex flex-column align-items-center bg-dark text-center txtWhite w-50 my-5 h-50">
+        <h1 class="title txtWhite">Su imagen fue actualizada, {{user}}.</h1>
+        <p class="txtMd">¡Qué buen gusto!.</p>
+    </div>
+    {% else %}
+    <div id="form" class="container d-flex flex-column border border-black border-2 rounded justify-content-center align-items-center w-50">
+        {% with user.avatar as avatar %}
+        {% if avatar %}
+            <img src="{{avatar.image.url}}" alt="No existe" id="avatarLg" class="rounded-circle">                     
+        {% else %} 
+            <img src="{% static 'img/default_avatar.webp' %}" alt="No existe" id="avatarLg" class="rounded-circle">                     
+        {% endif %}
+        <form action="" method="POST" enctype="multipart/form-data" class="container d-flex flex-column align-items-center w-100">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="container d-flex align-items-center my-4 w-75 gap-4">
+                <label class="mb-2 mb-md-0 txtMd txtWhite my-4 txtXl align-middle" for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                {% if field.field.widget.input_type == 'file' %}
+                    <input type="{{ field.field.widget.input_type }}" class="form-control txtMd" id="{{ field.auto_id }}" name="{{ field.html_name }}" accept="image/*" required>
+                {% else %}
+                    <input type="{{ field.field.widget.input_type }}" class="form-control txtMd" id="{{ field.auto_id }}" name="{{ field.html_name }}" required>
+                {% endif %}
+            </div>    
+            {% endfor %}    
+            <button type="submit" class="btn btn-outline-dark my-4 txtWhite txtXl border-2 w-75">Cambiar imagen</button>
+        {% if avatar %}
+            <a href="{% url 'BorrarAvatar' %}" class="w-75">
+                <button type="button" class="btn btn-outline-dark my-4 txtXl txtWhite border-2 w-100">Eliminar imagen</button>
+            </a>
+        {% endif %}            
+        </form>
+        {% endwith %}
+    </div>
+    {% endif %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+<!-- Herencia de plantilla padre -->
+
+{% extends 'base/base.html' %}
+
+<!-- Título de la página -->
+
+{% block page_title %}
+
+CF — Cierre de sesión
+
+{% endblock %}
+
+<!-- Mensaje del sistema -->
+
+{% block system_msg %}
+
+{{msg|safe}}
+
+{% endblock system_msg %}
+
+<!-- Título de la sección -->
+
+{% block title %}
+{% endblock %}
+
+<!-- Contenido principal de la página -->
+
+{% block content %}
+    <div class="container d-flex flex-column align-items-center bg-dark text-center txtWhite w-50 my-5">
+        <h2 class="title txtWhite txtXl my-4">La sesión ha sido cerrada</h2>
+        <p class="txtMd my-4">Esperamos que vuelva pronto, viajero/a.</p>
+    </div>
+{% endblock %}

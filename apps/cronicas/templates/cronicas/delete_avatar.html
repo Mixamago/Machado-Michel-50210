@@ -1,0 +1,45 @@
+<!-- Herencia de plantilla padre -->
+
+{% extends 'base/base.html' %}
+
+<!-- Título de la página -->
+
+{% block page_title %}
+
+CF — Borrar avatar
+
+{% endblock %}
+
+<!-- Mensaje del sistema -->
+
+{% block system_msg %}
+
+{{msg|safe}}
+
+{% endblock system_msg %}
+
+<!-- Título de la sección -->
+
+{% block title %}
+Borrar avatar
+{% endblock %}
+
+<!-- Contenido principal de la página -->
+{% block content %}
+    {% if not check %}
+        <div  id="form" class="container d-flex flex-column align-items-center border border-black border-2 text-center txtWhite w-50 my-5 h-50 py-4">
+            <h2 class="title txtWhite txtXl my-4">¿Está seguro/a de que desea borrar su imagen de perfil?</h2>
+            <p class="txtMd my-4">Este cambio es irreversible.</p>
+            <form method="POST" class="container d-flex gap-4">
+                {% csrf_token %}
+                <button type="submit" name="confirm" value="yes" class="btn btn-outline-dark my-4 txtWhite txtXl border-2 w-75">Sí</button>
+                <button type="submit" name="confirm" value="no" class="btn btn-outline-dark my-4 txtWhite txtXl border-2 w-75">No</button>
+            </form>        
+        </div>
+    {% else %}
+        <div class="container d-flex flex-column align-items-center bg-dark text-center txtWhite w-50 my-5 h-50 py-4">
+            <h2 class="title txtWhite txtXl my-4">Su imagen ha sido borrada.</h2>
+            <p class="txtMd my-4">Ahora se verá como uno/a más del montón..</p>
+        </div>    
+    {% endif %}
+{% endblock %}

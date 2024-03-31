@@ -1,0 +1,67 @@
+<!-- Herencia de plantilla padre -->
+
+{% extends 'base/base.html' %}
+
+<!-- Título de la página -->
+
+{% block page_title %}
+
+CF — Creación de personaje
+
+{% endblock %}
+
+<!-- Mensaje del sistema -->
+
+{% block system_msg %}
+
+{{msg|safe}}
+
+{% endblock system_msg %}
+
+<!-- Título de la sección -->
+
+{% block title %}
+Creación de personaje
+{% endblock %}
+
+<!-- Contenido principal de la página -->
+
+{% block content %}
+{% if hide %}
+<div class="container d-flex flex-column align-items-center bg-dark text-center txtWhite w-50 my-5 h-50 py-4">
+    <h2 class="title txtWhite txtXl my-4">Usted ya tiene a un personaje, <span class="fw-bold text-warning">{{user.username}}</span>.</h1>
+    <p class="txtMd my-4">Si desea crear a otro, antes borre a <span class="fw-bold text-warning">{{user.player.character.name}}</span>.</p>
+</div>
+{% else %}
+<div id="form" class="container d-flex border border-black border-2 rounded justify-content-center w-50">
+    <form action="/crear_personaje/" method="POST" class="container d-flex flex-column align-items-center">
+        {% csrf_token %}
+        <div class="d-flex align-items-center flex-column flex-md-row my-4 w-75">
+            <label class="mb-2 mb-md-0 txtMd txtWhite w-50 my-1 mx-2" for="name">Nombre del personaje:</label>
+            <input type="text" class="form-control txtMd" id="name" name="name" required>
+        </div>
+        <div class="d-flex align-items-center flex-column flex-md-row my-4 w-75">
+            <label class="mb-2 mb-md-0 txtMd txtWhite w-50 my-1 mx-2" for="race">Raza:</label>
+            <input type="text" class="form-control txtMd" id="race" name="race" required>
+        </div>
+        <div class="d-flex align-items-center flex-column flex-md-row my-4 w-75">
+            <label class="mb-2 mb-md-0 txtMd txtWhite w-50 my-1 mx-2" for="strength">Fuerza:</label>
+            <input type="number" class="form-control txtMd" id="strength" name="strength" required>
+        </div>
+        <div class="d-flex align-items-center flex-column flex-md-row my-4 w-75">
+            <label class="mb-2 mb-md-0 txtMd txtWhite w-50 my-1 mx-2" for="dexterity">Destreza:</label>
+            <input type="number" class="form-control txtMd" id="dexterity" name="dexterity" required>
+        </div>
+        <div class="d-flex align-items-center flex-column flex-md-row my-4 w-75">
+            <label class="mb-2 mb-md-0 txtMd txtWhite w-50 my-1 mx-2" for="constitution">Constitución:</label>
+            <input type="number" class="form-control txtMd" id="constitution" name="constitution" required>
+        </div>
+        <div class="d-flex align-items-center flex-column flex-md-row my-4 w-75">
+            <label class="mb-2 mb-md-0 txtMd txtWhite w-50 my-1 mx-2" for="intelligence">Inteligencia:</label>
+            <input type="number" class="form-control txtMd" id="intelligence" name="intelligence" required>
+        </div>        
+        <button type="submit" class="btn btn-outline-dark my-4 txtWhite txtXl border-2 w-75">Crear al personaje</button>
+    </form>
+</div>
+{% endif %}
+{% endblock %}

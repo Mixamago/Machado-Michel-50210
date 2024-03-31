@@ -1,0 +1,76 @@
+<!-- Herencia de plantilla padre -->
+
+{% extends 'base/base.html' %}
+{% load static %}
+
+<!-- Título de la página -->
+
+{% block page_title %}
+
+CF — Acerca de mí
+
+{% endblock %}
+
+<!-- Mensaje del sistema -->
+
+{% block system_msg %}
+
+</p>Conoce un poco acerca del creador de esta página.</p>
+
+{% endblock system_msg %}
+
+<!-- Título de la sección -->
+
+{% block title %}
+Acerca de mí
+{% endblock %}
+
+<!-- Contenido principal de la página -->
+{% block content %}
+<div id="about" class="container txtWhite border border-black border-4">
+    <img src="{% static 'img/aboutme.webp' %}" alt="Foto del creador" class="w-100 border-bottom border-black border-4">
+    <div class="border-bottom border-black border-2 mb-3">
+        <h2 class="title txtXl">Michel Machado</h2>
+    </div>
+    <div class="border-bottom border-black border-4 w-100">
+        <p class="text-start mx-2 txtLg"><span class="fw-bold">Edad:</span> 35 años.</p>
+        <p class="text-start mx-2 txtLg"><span class="fw-bold">Estado civil:</span> Soltero.</p>    
+        <p class="text-start mx-2 txtLg"><span class="fw-bold">Nacionalidad:</span> Uruguayo</p>
+        <p class="text-start mx-2 txtLg"><span class="fw-bold">Estudios:</span> Licenciatura en filosofía</p>
+    </div>
+    <div class="border-bottom border-black border-2 mb-3">
+        <h2 class="title txtXl">Gustos e intereses</h2>
+    </div>
+    <div class="border-bottom border-black border-4 w-100">
+        <ul>
+            <li class="text-start mx-2 txtLg">El blues y el jazz.</li>
+            <li class="text-start mx-2 txtLg">El café, en particular el mocachino.</li>
+            <li class="text-start mx-2 txtLg">La literatura fantástica. Particular interés por J.R.R. Tolkien y Patrick Rothfuss.</li>
+            <li class="text-start mx-2 txtLg">La programación. Particular interés por Python. </li>
+            <li class="text-start mx-2 txtLg">El invierno y los días de frío en general.</li>
+            <li class="text-start mx-2 txtLg">Tanto los alimentos como las bebidas dulces.</li>
+        </ul>
+    </div>    
+    <div class="border-bottom border-black border-2 mb-3">
+        <h2 class="title txtXl">Estudios</h2>
+    </div>
+    <div class="border-bottom border-black border-4 w-100">
+        <ul>
+            <li class="text-start mx-2 txtLg">Licenciatura en filosofía en la UCV de Venezuela.</li>
+            <li class="text-start mx-2 txtLg">Licenciatura en psicología en la UCV de Venezuela (incompleto).</li>
+            <li class="text-start mx-2 txtLg">Desarrollo web en Coderhouse.</li>
+            <li class="text-start mx-2 txtLg">Wordpress en Coderhouse.</li>
+            <li class="text-start mx-2 txtLg">Python en Coderhouse.</li>
+            <li class="text-start mx-2 txtLg">Taller de escritura creativa en Brothers Montevideo.</li>
+        </ul>
+    </div>    
+    <div class="border-bottom border-black border-2 mb-3">
+        <h2 class="title txtXl">Más información</h2>
+    </div>
+    <div class="w-100">
+        <p class="text-start mx-2 txtLg">Soy una persona bastante creativa, con un fuerte interés y atracción por la literatura..</p>
+        <p class="text-start mx-2 txtLg">Recién en los últimos años he podido adentrarme un poco en lo que es la programación en general, a pesar de que desde mi juventud sentí curiosidad y gusto hacia esa área. Mi mayor aspiración actualmente es poder trasladarme a ese rubro para así dedicar mi vida profesional a eso.</p>
+        <p class="text-start mx-2 txtLg">Me considero alguien que se adapta bastante a los distintos entornos de trabajo, con bastante facilidad al momento de interactuar con otras personas (sean clientes, compañeros trabajo o proveedores), y mi creatividad me brinda la posibilidad de buscar distintas soluciones a un mismo problema, así como también a saber manejarme con los recursos que tengo a mi disposición.</p>        
+    </div>    
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+<!-- Herencia de plantilla padre -->
+
+{% extends 'base/base.html' %}
+
+<!-- Título de la página -->
+
+{% block page_title %}
+
+CF — Enemigos
+
+{% endblock %}
+
+<!-- Mensaje del sistema -->
+
+{% block system_msg %}
+
+{{msg|safe}}
+
+{% endblock system_msg %}
+
+<!-- Título de la sección -->
+
+{% block title %}
+
+Enemigos
+
+{% endblock %}
+
+<!-- Contenido principal de la página -->
+{% block content %}
+<div class="container d-flex flex flex-column justify-content-center align-items-center">
+{% if request.user.is_authenticated and request.user.player.dungeon_master %}    
+    <a href="{% url 'CrearEnemigo' %}" class="w-25">
+        <button type="button" class="btn btn-outline-dark my-4 txtXl border-2 create">Crear nuevo enemigo</button>
+    </a>
+{% endif %}
+    <form class="d-flex" role="search" method="GET" action="{% url 'Enemigos' %}">
+        <input name="search" class="form-control me-2 txtMd" type="search" placeholder="Buscar enemigo" aria-label="Search">
+        <button class="btn btn-outline-success txtMd create btn-outline-dark text-nowrap" type="submit">Buscar enemigo</button>
+        <button class="btn btn-outline-success txtMd create btn-outline-dark text-nowrap mx-4" type="submit" name="search" value="">Limpiar búsqueda</button>
+    </form>  
+    <table class="txtMd table table-dark table-hover table-bordered my-4">
+        <tr>
+            <th class="p-1 txtLg title text-center align-middle">Nombre</th>
+            <th class="p-1 txtLg title text-center align-middle">Raza</th>
+            <th class="p-1 txtLg title text-center align-middle">Nivel</th>
+            <th class="p-1 txtLg title text-center align-middle">Fuerza</th>
+            <th class="p-1 txtLg title text-center align-middle">Destreza</th>
+            <th class="p-1 txtLg title text-center align-middle">Constitución</th>
+            <th class="p-1 txtLg title text-center align-middle">Inteligencia</th>
+            <th class="p-1 txtLg title text-center align-middle">Ataque</th>
+            <th class="p-1 txtLg title text-center align-middle">Iniciativa</th>
+            <th class="p-1 txtLg title text-center align-middle">PV</th>
+            {% if request.user.is_authenticated and request.user.player.dungeon_master %}
+            <th class="p-1 txtLg title text-center align-middle">Acción</th>           
+            {% endif %}
+        </tr>
+        {% for enemy in enemies %}
+        <tr>
+            <td class="text-center align-middle">{{enemy.name}}</td>
+            <td class="text-center align-middle">{{enemy.race}}</td>
+            <td class="text-center align-middle">{{enemy.level}}</td>
+            <td class="text-center align-middle">{{enemy.strength}}</td>
+            <td class="text-center align-middle">{{enemy.dexterity}}</td>
+            <td class="text-center align-middle">{{enemy.constitution}}</td>
+            <td class="text-center align-middle">{{enemy.intelligence}}</td>
+            <td class="text-center align-middle">{{enemy.attack}}</td>
+            <td class="text-center align-middle">{{enemy.initiative}}</td>
+            <td class="text-center align-middle">{{enemy.hit_points}}</td>
+            {% if request.user.is_authenticated and request.user.player.dungeon_master %}
+            <td class="text-center text-danger">
+                <a href="{% url 'BorrarEnemigo' enemy_id=enemy.id %}" aria-current="page">
+                    <button class="btn txtWhite txtMd">Eliminar</button>
+                </a>
+            </td>            
+            {% endif %}            
+        </tr>    
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

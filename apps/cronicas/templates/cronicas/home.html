@@ -1,0 +1,52 @@
+<!-- Herencia de plantilla padre -->
+
+{% extends 'base/base.html' %}
+{% load static %}
+
+<!-- Título de la página -->
+
+{% block page_title %}
+
+CF — Inicio
+
+{% endblock %}
+
+<!-- Mensaje del sistema -->
+
+{% block system_msg %}
+
+<p>Bienvenido/a a Crónicas fantásticas.</p>
+
+{% endblock system_msg %}
+
+<!-- Título de la sección -->
+
+{% block title %}
+Inicio
+{% endblock %}
+
+<!-- Contenido principal de la página -->
+{% block content %}
+<div id="home" class="container txtWhite border border-black border-4 w-50">
+    <img src="{% static 'img/home.webp' %}" alt="Foto del creador" class="w-100 border-bottom border-black border-4">    
+    <div class="border-bottom border-black border-2 mb-3">
+        <h2 class="title txtXl">¿Qué es este lugar?</h2>
+    </div>
+    <div class="border-bottom border-black border-2 mb-3">
+        <p class="text-start mx-2 txtLg">Crónicas Fantásticas es un sitio web dedicado a quienes están interesados en participar en una campaña de rol por medios digitales.</p>
+        <p class="text-start mx-2 txtLg">No hay restricciones en cuanto a la edad, el género o la nacionalidad. Todos son bienvenidos, siempre y cuando sepan respetar a los demás compañeros y estén dispuestos a divertirse.</p>
+    </div>  
+    <div class="border-bottom border-black border-2 mb-3">
+        <h2 class="title txtXl">Requisitos</h2>
+    </div>
+    <div class="w-100">
+        <ul>
+            <li class="text-start mx-2 txtLg">Tener Discord instalado, pues por allí serán las sesiones.</li>
+            <li class="text-start mx-2 txtLg">Una conexión a internet estable, pues de lo contrario será imposible que se lleve con fluidez la sesión.</li>
+            <li class="text-start mx-2 txtLg">Compromiso a la hora de asistir a las sesiones, y también al momento de leer el material necesario para jugar correctamente.</li>
+            <li class="text-start mx-2 txtLg">Un micrófono que funcione correctamente, para poder comunicarse con los demás a la hora de jugar.</li>
+            <li class="text-start mx-2 txtLg">Saber respetar al prójimo. Esta es la regla de oro y su incumplimiento puede significar la expulsión.</li>
+        </ul>
+    </div>    
+</div>
+{% endblock %}

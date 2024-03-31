@@ -1,0 +1,78 @@
+<!-- Herencia de plantilla padre -->
+
+{% extends 'base/base.html' %}
+
+<!-- Título de la página -->
+
+{% block page_title %}
+
+CF — Personajes
+
+{% endblock %}
+
+<!-- Mensaje del sistema -->
+
+{% block system_msg %}
+
+{{msg|safe}}
+
+{% endblock system_msg %}
+
+<!-- Título de la sección -->
+
+{% block title %}
+Personajes
+{% endblock %}
+
+<!-- Contenido principal de la página -->
+{% block content %}
+<div class="container d-flex flex flex-column justify-content-center align-items-center">
+{% if request.user.is_authenticated %}
+    {% if not request.user.player.character %}
+        <a href="{% url 'CrearPersonaje' %}" class="w-25">
+            <button type="button" class="btn btn-outline-dark my-4 txtXl border-2 create">Crear nuevo personaje</button>
+        </a>
+    {% else %}
+        <a href="{% url 'BorrarPersonaje' %}" class="w-25">
+            <button type="button" class="btn btn-outline-dark my-4 txtXl border-2 create">Eliminar personaje</button>
+        </a>  
+    {% endif %}
+{% else %}
+{% endif %}
+    <form class="d-flex" role="search" method="GET" action="{% url 'Personajes' %}">
+        <input name="search" class="form-control me-2 txtMd" type="search" placeholder="Buscar personaje" aria-label="Search">
+        <button class="btn btn-outline-success txtMd create btn-outline-dark text-nowrap" type="submit">Buscar personaje</button>
+        <button class="btn btn-outline-success txtMd create btn-outline-dark text-nowrap mx-4" type="submit" name="search" value="">Limpiar búsqueda</button>
+    </form>  
+    <table class="txtMd table table-dark table-hover table-bordered my-4">
+        <tr>
+            <th class="p-1 txtLg title text-center">Jugador</th>
+            <th class="p-1 txtLg title text-center">Nombre</th>
+            <th class="p-1 txtLg title text-center">Raza</th>
+            <th class="p-1 txtLg title text-center">Nivel</th>
+            <th class="p-1 txtLg title text-center">Fuerza</th>
+            <th class="p-1 txtLg title text-center">Destreza</th>
+            <th class="p-1 txtLg title text-center">Constitución</th>
+            <th class="p-1 txtLg title text-center">Inteligencia</th>
+            <th class="p-1 txtLg title text-center">Ataque</th>
+            <th class="p-1 txtLg title text-center">Iniciativa</th>
+            <th class="p-1 txtLg title text-center">PV</th>
+        </tr>
+        {% for character in characters %}
+        <tr>
+            <td class="text-center">{{character.player.user.username}}</td>        
+            <td class="text-center">{{character.name}}</td>
+            <td class="text-center">{{character.race}}</td>
+            <td class="text-center">{{character.level}}</td>
+            <td class="text-center">{{character.strength}}</td>
+            <td class="text-center">{{character.dexterity}}</td>
+            <td class="text-center">{{character.constitution}}</td>
+            <td class="text-center">{{character.intelligence}}</td>
+            <td class="text-center">{{character.attack}}</td>
+            <td class="text-center">{{character.initiative}}</td>
+            <td class="text-center">{{character.hit_points}}</td>  
+        </tr>    
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

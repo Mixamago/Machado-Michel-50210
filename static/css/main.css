@@ -1,0 +1,135 @@
+/* Fuentes para el sitio. */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* CSS para el sitio en general. */
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif; }
+
+html {
+    font-size: 62.5%; }
+
+body{
+    background-color: #62B1C5; }
+
+#header {
+    background-color: #0F5E75; }
+  
+#footer {
+    background-color: #0F5E75; }
+
+#form{
+    background-color: rgb(30, 30, 30, 0.5);
+}
+
+#msgsystem{
+    background-color: rgb(30, 30, 30, 0.8);
+    width: 100%;
+    color: #E0EBE3;
+    font-size: 1.7rem;
+}
+
+#avatarSm{
+    width: 50px;
+    height: 50px;
+}
+
+#avatarLg{
+    width: 200px;
+    height: 200px;
+}
+
+#about{
+    border-radius: 10px 10px 0 0;
+    background-color: rgb(30, 30, 30, 0.8);
+    width: 400px;
+    padding: 0px;
+}
+    #about img{
+        border-radius: 10px 10px 0 0;
+    }
+
+#home{
+    border-radius: 10px 10px 0 0;
+    background-color: rgb(30, 30, 30, 0.8);    
+    padding: 0px;    
+}
+
+h1{
+    font-size: 7rem;
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    color: #080808;
+    font-weight: 700;
+}
+
+/* CSS para los textos. */
+
+.txtSm {
+    font-size: 1.5rem;
+    line-height: 2rem; }
+
+.txtMd {
+    font-size: 1.8rem;
+    line-height: 2.3rem; }
+    
+.txtLg {
+    font-size: 2.2rem;
+    line-height: 2.7rem; }
+
+.txtXl {
+    font-size: 3rem;
+    line-height: 3rem; }
+
+.txtBold {
+    font-weight: 700; }
+
+.txtCenter {
+    text-align: center; }
+
+.txtItal {
+    font-style: italic; }
+
+.txtWhite {
+    color: #E0EBE3; }
+
+.title{
+    font-family: "Playfair Display", serif;
+}
+
+/* CSS para otros casos. */
+
+.nav-link.txtWhite {
+    color: #E0EBE3; }
+    .nav-link.txtWhite:hover{
+        color: gold
+    }
+
+.create{
+    color: rgb(30, 30, 30);
+    font-weight: 700;
+}
+    .create:hover{
+        color: #E0EBE3;
+    };
+
+ul.dropdown-menu{
+    background-color: #0F5E75 !important; 
+}
+
+.drop{
+    background-color: #0F5E75; 
+}
+
+a.nav-link.dropdown-toggle.txtWhite.title:focus{
+    color: gold
+}
+
+.profile{
+    width: 100px;
+    height: 100px;        
+}

@@ -3,14 +3,6 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Player(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)    
-    age = models.IntegerField()
-    country = models.CharField(max_length=50)
-
-    def __str__ (self):
-            return self.user.username
-
 class Avatar(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='avatares', null=True, blank=True)
@@ -19,10 +11,9 @@ class Avatar(models.Model):
         return f'{self.user} — {self.image}'
 
 class Character(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     race = models.CharField(max_length=50)
-    level = models.IntegerField(default=1)
+    level = models.IntegerField(default=1, null=True, blank=True)
     strength = models.IntegerField()
     dexterity = models.IntegerField()
     constitution = models.IntegerField()
@@ -32,13 +23,22 @@ class Character(models.Model):
     hit_points = models.IntegerField()
 
     def save(self, *args, **kwargs):
-        self.attack = self.strength
-        self.hit_points = self.constitution * 10
-        self.initiative = self.dexterity * 10
+        self.attack = int(self.strength) * 1.5
+        self.hit_points = int(self.constitution) * 10
+        self.initiative = int(self.dexterity) * 10
         super().save(*args, **kwargs)
 
     def __str__ (self):
         return self.name
+    
+class Player(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    country = models.CharField(max_length=50)
+    dungeon_master= models.BooleanField(default=False)
+    character = models.OneToOneField(Character, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__ (self):
+            return self.user.username
 
 class Enemy(models.Model):
     name = models.CharField(max_length=50)
@@ -49,14 +49,17 @@ class Enemy(models.Model):
     constitution = models.IntegerField()
     intelligence = models.IntegerField()
     attack = models.IntegerField()
-    atk_mod = models.IntegerField(default=1)
+    atk_mod = models.FloatField()
     initiative = models.IntegerField()
     hit_points = models.IntegerField()
     
     def save(self, *args, **kwargs):
-        self.attack = round(self.strength * self.atk_mod)
-        self.hit_points = self.constitution * 10
-        self.initiative = self.dexterity * 10
+        this_strength = int(self.strength)
+        this_constitution = int(self.constitution)
+        this_dexterity = int(self.dexterity)
+        self.attack = round(int(this_strength) * float(self.atk_mod))
+        self.hit_points = int(this_constitution) * 10
+        self.initiative = int(this_dexterity) * 10
         super().save(*args, **kwargs)
 
     def __str__ (self):

@@ -1,0 +1,65 @@
+<!-- Herencia de plantilla padre -->
+
+{% extends 'base/base.html' %}
+{% load static %}
+
+<!-- Título de la página -->
+
+{% block page_title %}
+
+CF — Jugadores
+
+{% endblock %}
+
+<!-- Mensaje del sistema -->
+
+{% block system_msg %}
+
+{{msg|safe}}
+
+{% endblock system_msg %}
+
+<!-- Título de la sección -->
+
+{% block title %}
+Jugadores
+{% endblock %}
+
+<!-- Contenido principal de la página -->
+{% block content %}
+<div class="container d-flex flex flex-column justify-content-center align-items-center">
+    <form class="d-flex" role="search" method="GET" action="{% url 'Jugadores' %}">
+        <input name="search" class="form-control me-2 txtMd" type="search" placeholder="Buscar jugador" aria-label="Search">
+        <button class="btn btn-outline-success txtMd create btn-outline-dark text-nowrap" type="submit">Buscar jugador</button>
+        <button class="btn btn-outline-success txtMd create btn-outline-dark text-nowrap mx-4" type="submit" name="search" value="">Limpiar búsqueda</button>
+    </form>  
+    <table class="txtMd table table-dark table-hover table-bordered my-4">
+        <tr>
+            <th class="p-1 txtLg title text-center">Avatar</th>        
+            <th class="p-1 txtLg title text-center">Jugador</th>
+            <th class="p-1 txtLg title text-center">Personaje</th>
+            <th class="p-1 txtLg title text-center">Fecha de registro</th>
+            <th class="p-1 txtLg title text-center">Último ingreso</th>
+            <th class="p-1 txtLg title text-center">País</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            {% if not user.avatar %}
+                <td class="text-center"><img src="{% static 'img/who.jpeg' %}" alt="No existe" class="rounded-circle profile m-2"></td>                    
+            {% else %}
+                <td class="text-center"><img src="{{user.avatar.image.url}}" alt="No existe" class="rounded-circle profile m-2"></td>        
+            {% endif %}
+            <td class="text-center align-middle">{{user.username}}</td>
+                {% if user.player.character == None %}
+                    <td class="text-center align-middle">—</td>    
+                {% else %}
+                    <td class="text-center align-middle">{{user.player.character}}</td>    
+                {% endif %}
+            <td class="text-center align-middle">{{user.last_login}}</td>
+            <td class="text-center align-middle">{{user.date_joined}}</td>
+            <td class="text-center align-middle">{{user.player.country}}</td>
+        </tr>  
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

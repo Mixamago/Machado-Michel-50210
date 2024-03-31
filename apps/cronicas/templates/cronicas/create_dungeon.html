@@ -1,0 +1,58 @@
+<!-- Herencia de plantilla padre -->
+
+{% extends 'base/base.html' %}
+
+<!-- Título de la página -->
+
+{% block page_title %}
+
+CF — Creación de calabozo
+
+{% endblock %}
+
+<!-- Mensaje del sistema -->
+
+{% block system_msg %}
+
+{{msg|safe}}
+
+{% endblock system_msg %}
+
+<!-- Título de la sección -->
+
+{% block title %}
+Creación de calabozo
+{% endblock %}
+
+<!-- Contenido principal de la página -->
+
+{% block content %}
+
+<div id="form" class="container d-flex border border-black border-2 rounded justify-content-center w-50">
+    <form action="/crear_calabozo/" method="POST" class="container d-flex flex-column align-items-center">
+        {% csrf_token %}
+        <div class="d-flex align-items-center flex-column flex-md-row my-4 w-75">
+            <label class="mb-2 mb-md-0 txtMd txtWhite w-50 my-1 mx-2" for="name">Nombre del calabozo:</label>
+            <input type="text" class="form-control txtMd" id="name" name="name" required>
+        </div>
+        <div class="d-flex align-items-center flex-column flex-md-row my-4 w-75">
+            <label class="mb-2 mb-md-0 txtMd txtWhite w-50 my-1 mx-2" for="difficulty">Dificultad:</label>
+            <input type="text" class="form-control txtMd" id="difficulty" name="difficulty" required>
+        </div>
+        <div class="d-flex align-items-center flex-column flex-md-row my-4 w-75">
+            <label class="mb-2 mb-md-0 txtMd txtWhite w-50 my-1 mx-2" for="floors">Número de pisos:</label>
+            <input type="number" class="form-control txtMd" id="floors" name="floors" required>
+        </div>
+        <div class="d-flex align-items-center flex-column flex-md-row my-4 w-75">
+            <label class="mb-2 mb-md-0 txtMd txtWhite w-50 my-1 mx-2" for="exp">Recompensa de experiencia:</label>
+            <input type="number" class="form-control txtMd" id="exp" name="exp" required>
+        </div>
+        <div class="d-flex align-items-center flex-column flex-md-row my-4 w-75">
+            <label class="mb-2 mb-md-0 txtMd txtWhite w-50 my-1 mx-2" for="gold">Recompensa de oro:</label>
+            <input type="number" class="form-control txtMd" id="gold" name="gold" required>
+        </div>
+        <button type="submit" class="btn btn-outline-dark my-4 txtWhite txtXl border-2 w-75">Crear el calabozo</button>
+    </form>
+</div>
+
+{% endblock %}

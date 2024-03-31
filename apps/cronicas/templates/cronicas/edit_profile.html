@@ -1,0 +1,50 @@
+<!-- Herencia de plantilla padre -->
+
+{% extends 'base/base.html' %}
+
+<!-- Título de la página -->
+
+{% block page_title %}
+
+CF — Editar perfil
+
+{% endblock %}
+
+<!-- Mensaje del sistema -->
+
+{% block system_msg %}
+
+{{msg|safe}}
+
+{% endblock system_msg %}
+
+<!-- Título de la sección -->
+
+{% block title %}
+Editar perfil
+{% endblock %}
+
+<!-- Contenido principal de la página -->
+
+{% block content %}
+
+{% if check %}
+<div class="container d-flex flex-column align-items-center bg-dark text-center txtWhite w-50 my-5 h-50">
+    <h1 class="title txtWhite">Los cambios fueron realizados, {{user}}.</h1>
+    <p class="txtMd">Puede continuar con su aventura.</p>
+</div>
+{% else %}
+<div id="form" class="container d-flex border border-black border-2 rounded justify-content-center w-50">
+    <form action="" method="POST" class="container d-flex flex-column align-items-center">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="d-flex align-items-center flex-column flex-md-row my-4 w-75">
+            <label class="mb-2 mb-md-0 txtMd txtWhite w-50 my-4" for="{{ field.id_for_label }}">{{ field.label }}:</label>
+            <input type="{{ field.field.widget.input_type }}" class="form-control txtMd" id="{{ field.auto_id }}" name="{{ field.html_name }}" {% if field.field.required %}required{% endif %}>
+        </div>    
+        {% endfor %}    
+        <button type="submit" class="btn btn-outline-dark my-4 txtWhite txtXl border-2 w-75">Inciar sesion</button>
+    </form>
+</div>
+{% endif %}
+{% endblock %}
