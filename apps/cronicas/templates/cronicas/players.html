@@ -45,7 +45,7 @@ Jugadores
         {% for user in users %}
         <tr>
             {% if not user.avatar %}
-                <td class="text-center"><img src="{% static 'img/who.jpeg' %}" alt="No existe" class="rounded-circle profile m-2"></td>                    
+                <td class="text-center"><img src="{% static 'img/default_avatar.webp' %}" alt="No existe" class="rounded-circle profile m-2"></td>                    
             {% else %}
                 <td class="text-center"><img src="{{user.avatar.image.url}}" alt="No existe" class="rounded-circle profile m-2"></td>        
             {% endif %}
